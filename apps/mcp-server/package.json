@@ -1,0 +1,41 @@
+{
+  "name": "mcp-server",
+  "version": "0.0.1",
+  "private": true,
+  "main": "dist/index.js",
+  "description": "MCP Server Template",
+  "files": [
+    "dist"
+  ],
+  "bin": {
+    "mcp-server": "./dist/index.js"
+  },
+  "type": "module",
+  "scripts": {
+    "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist",
+    "format": "prettier \"**/*.{mjs,ts,md,json}\" --write",
+    "lint": "eslint \"src/**/*.ts\"",
+    "type-check": "tsc --noEmit",
+    "build": "tsc",
+    "dev": "tsx watch --env-file=.env src/index.ts",
+    "start": "node dist/index.js",
+    "inspector": "mcp-inspector http://localhost:4000/mcp"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.25.2",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "zod": "^3.25.51"
+  },
+  "devDependencies": {
+    "@modelcontextprotocol/inspector": "^0.18.0",
+    "@monorepo/eslint-config": "workspace:*",
+    "@monorepo/prettier-config": "workspace:*",
+    "@monorepo/typescript-config": "workspace:*",
+    "@types/express": "^5.0.3",
+    "@types/node": "^22.15.30",
+    "prettier": "^3.5.3",
+    "tsx": "^4.19.4",
+    "typescript-eslint": "^8.32.0"
+  }
+}

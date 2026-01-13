@@ -1,0 +1,78 @@
+import { StreamableHTTPServerTransport } from '@modelcontextprotocol/sdk/server/streamableHttp.js';
+import express, { type Request, type Response } from 'express';
+
+import { config } from './config.js';
+import { getServer } from './server.js';
+
+const app = express();
+app.use(express.json());
+
+app.post('/mcp', async (req: Request, res: Response) => {
+  try {
+    const transport = new StreamableHTTPServerTransport({
+      sessionIdGenerator: undefined,
+    });
+
+    res.on('close', () => {
+      transport.close();
+    });
+
+    const server = getServer();
+    await server.connect(transport);
+
+    await transport.handleRequest(req, res, req.body);
+  } catch (error) {
+    console.error('Error handling MCP request:', error);
+    if (!res.headersSent) {
+      res.status(500).json({
+        jsonrpc: '2.0',
+        error: {
+          code: -32603,
+          message: 'Internal server error',
+        },
+        id: null,
+      });
+    }
+  }
+});
+
+app.get('/mcp', (_: Request, res: Response) => {
+  console.log('Received GET MCP request');
+  res.writeHead(405).end(
+    JSON.stringify({
+      jsonrpc: '2.0',
+      error: {
+        code: -32000,
+        message: 'Method not allowed.',
+      },
+      id: null,
+    })
+  );
+});
+
+app.delete('/mcp', (_: Request, res: Response) => {
+  console.log('Received GET MCP request');
+  res.writeHead(405).end(
+    JSON.stringify({
+      jsonrpc: '2.0',
+      error: {
+        code: -32000,
+        message: 'Method not allowed.',
+      },
+      id: null,
+    })
+  );
+});
+
+app.listen(config.PORT, (error) => {
+  if (error) {
+    console.error('Failed to start server:', error);
+    process.exit(1);
+  }
+  console.log(`MCP Streamable HTTP Server listening on port ${config.PORT}`);
+});
+
+process.on('SIGINT', () => {
+  console.log('Server shutdown complete');
+  process.exit(0);
+});

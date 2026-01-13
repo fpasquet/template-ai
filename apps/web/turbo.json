@@ -1,0 +1,25 @@
+{
+  "extends": ["//"],
+  "tasks": {
+    "typegen": {
+      "outputs": [".next/types/**"]
+    },
+    "dev": {
+      "env": ["NODE_ENV"],
+      "inputs": ["$TURBO_DEFAULT$", ".env"]
+    },
+    "start": {},
+    "build": {
+      "env": ["NODE_ENV"],
+      "outputs": [".next/**", "!.next/cache/**"]
+    },
+    "lint": {
+      "dependsOn": ["typegen", "^build"],
+      "inputs": ["src/**"]
+    },
+    "type-check": {
+      "dependsOn": ["typegen", "^build"],
+      "inputs": ["src/**"]
+    }
+  }
+}

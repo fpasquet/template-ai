@@ -1,0 +1,12 @@
+{
+  "extends": "@monorepo/typescript-config/nextjs.json",
+  "compilerOptions": {
+    "paths": {
+      "@monorepo/ui/components/*": ["./src/components/*"],
+      "@monorepo/ui/hooks/*": ["./src/hooks/*"],
+      "@monorepo/ui/utils": ["./src/utils"]
+    }
+  },
+  "include": ["src/**/*", ".storybook/**/*"],
+  "exclude": ["node_modules"]
+}

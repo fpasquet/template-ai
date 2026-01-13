@@ -1,0 +1,12 @@
+# Repository Guidelines
+- Write code, comments, and documentation in English.
+- Use pnpm with the Turborepo scripts defined at the workspace root for installs, development, and linting.
+- Keep React components stateless and colocate shared UI primitives inside `apps/web/src/components`; place provider wiring in `apps/web/src/containers` or `apps/web/src/providers` to keep layout code lean.
+- When adding new containers, keep them focused on wiring data fetching, context, or provider setup while delegating rendering to stateless presentational components.
+- Favor reusable hooks in `apps/web/src/hooks` and shared utilities in `apps/web/src/lib` rather than duplicating logic.
+- Document exported helpers with JSDoc and avoid introducing `any`, unused imports, or dead code.
+- Localize user-facing strings by updating the translation resources under `apps/web/public/locales` and reuse existing keys when possible.
+- Name files and directories using kebab-case to keep paths predictable.
+- Keep translation keys in kebab-case to align with the file naming convention.
+- Centralize cross-cutting constants under `apps/web/src/constants` and import from there instead of redefining literals.
+- In `src/composants`, do not introduce components that rely on hooks such as `useTranslate`; keep that directory limited to purely presentational components.

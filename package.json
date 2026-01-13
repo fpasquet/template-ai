@@ -1,0 +1,37 @@
+{
+  "name": "monorepo-template",
+  "private": true,
+  "scripts": {
+    "prepare": "test -d .git && husky || true",
+    "clean": "turbo run clean && rm -rf node_modules",
+    "format": "turbo run format",
+    "lint": "turbo run lint",
+    "type-check": "turbo run type-check",
+    "test": "turbo run test",
+    "build": "turbo run build",
+    "dev": "turbo run dev",
+    "deps:check": "syncpack list-mismatches",
+    "deps:fix": "syncpack fix-mismatches"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^19.8.1",
+    "@commitlint/config-conventional": "^19.8.1",
+    "@commitlint/format": "^19.8.1",
+    "@commitlint/types": "^19.8.1",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.1.2",
+    "playwright": "^1.56.1",
+    "syncpack": "^13.0.4",
+    "turbo": "^2.5.4",
+    "typescript": "^5.9.3"
+  },
+  "packageManager": "pnpm@9.0.0",
+  "pnpm": {
+    "overrides": {
+      "zod": "^4.3.5"
+    }
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}

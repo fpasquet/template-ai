@@ -1,0 +1,16 @@
+{
+  "extends": ["//"],
+  "tasks": {
+    "dev": {
+      "env": ["PORT", "LOG_LEVEL", "OPENROUTER_API_KEY"],
+      "inputs": ["$TURBO_DEFAULT$", ".env"]
+    },
+    "start": {
+      "env": ["PORT", "LOG_LEVEL", "OPENROUTER_API_KEY"]
+    },
+    "build": {
+      "dependsOn": ["^build"],
+      "outputs": [".mastra/**"]
+    }
+  }
+}

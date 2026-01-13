@@ -1,0 +1,40 @@
+{
+  "name": "agent-ai",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf .mastra",
+    "format": "prettier \"**/*.{mjs,ts,md,json}\" --write",
+    "lint": "eslint \"src/**/*.ts\"",
+    "type-check": "tsc --noEmit",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "mastra dev",
+    "build": "mastra build",
+    "start": "mastra start"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "engines": {
+    "node": ">=22.13.0"
+  },
+  "dependencies": {
+    "@mastra/core": "1.0.0-beta.21",
+    "@mastra/evals": "1.0.0-beta.4",
+    "@mastra/libsql": "1.0.0-beta.11",
+    "@mastra/loggers": "1.0.0-beta.4",
+    "@mastra/memory": "1.0.0-beta.12",
+    "@mastra/observability": "1.0.0-beta.10",
+    "zod": "^4"
+  },
+  "devDependencies": {
+    "@monorepo/eslint-config": "workspace:*",
+    "@monorepo/prettier-config": "workspace:*",
+    "@monorepo/typescript-config": "workspace:*",
+    "@types/node": "^25.0.7",
+    "mastra": "1.0.0-beta.14",
+    "typescript": "^5.9.3"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "layout": {
+    "dashboard": {
+      "navigation": {
+        "app-name": "Acme",
+        "items": {
+          "home": "Accueil",
+          "assistant": "Assistant"
+        },
+        "user-menu": {
+          "account": "Mon compte",
+          "logout": "Se déconnecter"
+        },
+        "placeholder": "Cette page est prête à accueillir votre contenu."
+      }
+    }
+  }
+}
