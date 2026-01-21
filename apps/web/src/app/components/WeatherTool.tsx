@@ -3,7 +3,7 @@ import type { ToolUIPart, UIMessage } from 'ai';
 import { MessageResponse } from '@monorepo/ui/components/ai-elements/message';
 import { Tool, ToolContent, ToolHeader, ToolInput, ToolOutput } from '@monorepo/ui/components/ai-elements/tool';
 
-export default function WeatherTool({ messages }: { messages: UIMessage[] }) {
+export default function WeatherTool({ messages, index }: { messages: UIMessage[]; index: number }) {
   type WeatherToolInput = {
     location: string;
     units: 'celsius' | 'fahrenheit';
@@ -25,8 +25,9 @@ export default function WeatherTool({ messages }: { messages: UIMessage[] }) {
     };
   }>;
 
-  const latestMessage = messages[messages.length - 1];
-  const weatherTool = latestMessage?.parts?.find((part) => part.type === 'tool-weatherTool') as
+  const currentMessage = messages[index];
+
+  const weatherTool = currentMessage?.parts?.find((part) => part.type === 'tool-weatherTool') as
     | WeatherToolUIPart
     | undefined;
 
