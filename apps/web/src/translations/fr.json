@@ -13,6 +13,17 @@
         },
         "placeholder": "Cette page est prête à accueillir votre contenu."
       }
+    },
+    "assistant": {
+      "thread": {
+        "composer": {
+          "placeholder": "Envoyez un message..."
+        },
+        "welcome": {
+          "primary": "Bonjour !",
+          "secondary": "Comment puis-je vous aider aujourd'hui ?"
+        }
+      }
     }
   }
 }

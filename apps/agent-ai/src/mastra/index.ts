@@ -1,3 +1,4 @@
+import { chatRoute } from '@mastra/ai-sdk';
 import { Mastra } from '@mastra/core/mastra';
 import { LibSQLStore } from '@mastra/libsql';
 import { PinoLogger } from '@mastra/loggers';
@@ -26,4 +27,17 @@ export const mastra = new Mastra({
       },
     },
   }),
+  server: {
+    apiRoutes: [
+      chatRoute({
+        path: "/chat",
+        agent: "weatherAgent",
+      }),
+    ],
+    cors: {
+      origin: ['http://localhost:3000'],
+      allowMethods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+      allowHeaders: ['Content-Type', 'Authorization', 'User-Agent'],
+    },
+  },
 });
